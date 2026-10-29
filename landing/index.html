@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sheetgen Web — чертёж детали по 3D-модели</title>
+  <meta name="description" content="Загрузите STEP-модель детали и получите чертёж по ГОСТ, ISO или ASME: виды, разрезы, размеры и основная надпись. PNG, PDF и SVG.">
+  <meta name="theme-color" content="#fbfbfa">
+  <meta property="og:title" content="Sheetgen Web — чертёж детали по 3D-модели">
+  <meta property="og:description" content="Загрузите STEP — получите лист по ГОСТ, ISO или ASME за несколько секунд.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/gost-gear-1600.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/osifont-sgw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <div class="sheet">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Sheetgen Web, в начало страницы">
+        <svg class="brand-mark" viewBox="0 0 30 14" aria-hidden="true" focusable="false">
+          <polygon points="1,5 11,3 11,11 1,9"/>
+          <circle cx="22" cy="7" r="5.5"/>
+          <circle cx="22" cy="7" r="2.6"/>
+        </svg>
+        <span class="brand-name">Sheetgen Web</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Меню</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Разделы страницы">
+        <ul>
+          <li><a href="#how">Как это работает</a></li>
+          <li><a href="#demo">Демо</a></li>
+          <li><a href="#examples">Примеры</a></li>
+          <li><a href="#standards">Стандарты</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+        <a class="button button-primary nav-cta" href="#demo">Попробовать демо</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- Первый экран -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="hero-dim">
+            <h1 id="hero-title">Загрузите STEP — получите чертёж</h1>
+            <div class="dimension" role="img" aria-label="Между загрузкой модели и готовым листом обычно около пяти секунд">
+              <span class="dimension-ext dimension-ext-start"></span>
+              <span class="dimension-line"></span>
+              <span class="dimension-ext dimension-ext-end"></span>
+              <span class="dimension-label">≈ 5 с</span>
+            </div>
+          </div>
+          <p class="lead">Sheetgen Web строит лист по модели детали: виды и разрезы, размеры, рамку и основную надпись. По ГОСТ, ISO или ASME — в PNG, PDF или SVG.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#demo">Попробовать демо</a>
+            <a class="button button-secondary" href="#examples">Посмотреть готовые листы</a>
+          </div>
+          <p class="status-note">Сервис в разработке, запуск — декабрь 2026. Демо на этой странице работает уже сейчас.</p>
+        </div>
+
+        <figure class="hero-figure">
+          <button class="zoomable" type="button" data-zoom="gost" aria-label="Открыть лист по ГОСТ крупнее">
+            <img src="assets/img/gost-gear-1600.webp"
+                 srcset="assets/img/gost-gear-900.webp 900w, assets/img/gost-gear-1600.webp 1600w"
+                 sizes="(max-width: 900px) 100vw, 58vw"
+                 width="1600" height="1131"
+                 alt="Чертёж зубчатого колеса по ГОСТ: главный вид с размерами, разрез Б–Б, вид слева и основная надпись «Привод масляного насоса»."
+                 fetchpriority="high">
+          </button>
+          <figcaption>Лист по ГОСТ, построенный генератором по STEP-модели зубчатого колеса. Ни одного размера не поставлено вручную.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Проблема -->
+      <section class="section" id="problem" aria-labelledby="problem-title">
+        <h2 id="problem-title">Модель есть, а чертежа нет</h2>
+        <p class="section-intro">Деталь давно смоделирована, но для станка, заказчика или курсовой нужен лист. Его оформление — отдельная работа.</p>
+        <ul class="problem-list">
+          <li>
+            <h3>Оформление занимает часы</h3>
+            <p>Даже в КОМПАС или SolidWorks виды, разрезы, десятки размеров и основную надпись расставляет инженер.</p>
+          </li>
+          <li>
+            <h3>Станок работает по листу</h3>
+            <p>Мастерской нужен чертёж, а заказчик прислал только STEP и не может сделать лист сам.</p>
+          </li>
+          <li>
+            <h3>Стандарты расходятся</h3>
+            <p>ГОСТ и ISO — первый угол проецирования и миллиметры, ASME — третий угол и часто дюймы. Для зарубежного партнёра лист приходится переделывать.</p>
+          </li>
+          <li>
+            <h3>CAD-пакет нужен не всем</h3>
+            <p>Лицензия, установка и навык — слишком высокая цена, если нужен один лист по готовой модели.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Как работает -->
+      <section class="section" id="how" aria-labelledby="how-title">
+        <h2 id="how-title">Как это работает</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-number" aria-hidden="true">1</span>
+            <h3>Загрузите модель</h3>
+            <p>Файл STEP или IGES с одной деталью, до 30 МБ. Перетащите его в окно или выберите на компьютере.</p>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">2</span>
+            <h3>Выберите оформление</h3>
+            <p>Стандарт, формат листа и поля основной надписи: наименование, обозначение, материал, разработчик.</p>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">3</span>
+            <h3>Скачайте лист</h3>
+            <p>Через несколько секунд лист откроется в браузере. Скачайте PNG, PDF или SVG — чертёж останется в истории.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Демо -->
+      <section class="section demo" id="demo" aria-labelledby="demo-title">
+        <h2 id="demo-title">Попробуйте на детали-примере</h2>
+        <p class="section-intro">Фланец с четырьмя отверстиями. Выберите стандарт и постройте лист, затем скрывайте и показывайте слои — так будет работать просмотр в приложении.</p>
+
+        <div class="demo-layout">
+          <form class="demo-controls" id="demo-form" novalidate>
+            <fieldset class="field">
+              <legend>Модель</legend>
+              <p class="model-chip"><span class="model-name">flange.step</span> <span class="model-meta">пример, 48 КБ</span></p>
+              <div class="dropzone" id="dropzone">
+                <p class="dropzone-title" id="file-title">Проверить свой файл</p>
+                <input class="file-input" type="file" id="model-file" name="model" accept=".step,.stp,.iges,.igs" aria-describedby="file-title file-hint file-message">
+                <label class="file-button" for="model-file">Выбрать файл</label>
+                <span class="file-name" id="file-name">Файл не выбран</span>
+                <p class="hint" id="file-hint">.step, .stp, .iges или .igs, до 30 МБ. Можно перетащить сюда.</p>
+              </div>
+              <p class="file-message" id="file-message" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>Стандарт</legend>
+              <div class="segmented">
+                <input type="radio" id="std-gost" name="standard" value="GOST" checked>
+                <label for="std-gost">ГОСТ</label>
+                <input type="radio" id="std-iso" name="standard" value="ISO">
+                <label for="std-iso">ISO</label>
+                <input type="radio" id="std-asme" name="standard" value="ASME">
+                <label for="std-asme">ASME, дюймы</label>
+              </div>
+            </fieldset>
+
+            <button class="button button-primary build-button" type="submit" id="build-button">Построить чертёж</button>
+
+            <div class="build-status" id="build-status" role="status" aria-live="polite">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span class="status-text">Готово: ГОСТ, A4, масштаб 1:1, 7 размеров</span>
+            </div>
+
+            <fieldset class="field layers">
+              <legend>Слои</legend>
+              <label class="check"><input type="checkbox" name="layer" value="visible" checked> Видимые линии</label>
+              <label class="check"><input type="checkbox" name="layer" value="hidden" checked> Невидимые линии</label>
+              <label class="check"><input type="checkbox" name="layer" value="center" checked> Осевые</label>
+              <label class="check"><input type="checkbox" name="layer" value="dims" checked> Размеры</label>
+              <label class="check"><input type="checkbox" name="layer" value="hatch" checked> Штриховка</label>
+            </fieldset>
+
+            <button class="button button-secondary" type="button" id="download-svg">Скачать SVG</button>
+          </form>
+
+          <div class="demo-stage">
+            <div class="demo-sheet" id="demo-sheet" aria-busy="false"></div>
+            <p class="demo-note">Демо-лист строится прямо в браузере. В приложении лист по вашей модели построит генератор на сервере.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Возможности -->
+      <section class="section" id="features" aria-labelledby="features-title">
+        <h2 id="features-title">Что умеет сервис</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Три стандарта</h3>
+            <p>ГОСТ, ISO и ASME в миллиметрах или дюймах. Дюймовая модель распознаётся сама.</p>
+          </li>
+          <li>
+            <h3>Виды, разрезы и размеры</h3>
+            <p>Разрезы через оси отверстий, полувид-полуразрез у тел вращения, повторы «4 отв. ⌀9», фаски и резьба.</p>
+          </li>
+          <li>
+            <h3>Любой формат листа</h3>
+            <p>A4–A1 и ANSI A–D. В режиме «авто» сервис сам подберёт формат и масштаб из стандартного ряда.</p>
+          </li>
+          <li>
+            <h3>Основная надпись из формы</h3>
+            <p>Наименование, обозначение, материал и разработчик. Масса считается по объёму детали и материалу.</p>
+          </li>
+          <li>
+            <h3>Слои на просмотре</h3>
+            <p>Скройте размеры или осевые, чтобы увидеть геометрию, и верните их одним щелчком.</p>
+          </li>
+          <li>
+            <h3>PNG, PDF и SVG</h3>
+            <p>Превью в браузере, вектор для печати и правки, растр для отчёта или переписки.</p>
+          </li>
+          <li>
+            <h3>История чертежей</h3>
+            <p>Поиск, фильтр по стандарту и перестроение листа с новыми параметрами.</p>
+          </li>
+          <li>
+            <h3>Понятные ошибки</h3>
+            <p>«Загрузите одну деталь, а не сборку» вместо технического отчёта — сразу ясно, что исправить.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Примеры -->
+      <section class="section" id="examples" aria-labelledby="examples-title">
+        <h2 id="examples-title">Листы, построенные генератором</h2>
+        <p class="section-intro">Оба листа собраны без участия человека. Оформление у них разное: это режим обучающего набора. В сервисе оформление будет единым, с вашей основной надписью.</p>
+        <div class="gallery">
+          <figure class="gallery-item gallery-wide">
+            <button class="zoomable" type="button" data-zoom="gost" aria-label="Открыть лист по ГОСТ крупнее">
+              <img src="assets/img/gost-gear-900.webp"
+                   srcset="assets/img/gost-gear-900.webp 900w, assets/img/gost-gear-1600.webp 1600w"
+                   sizes="(max-width: 900px) 100vw, 60vw"
+                   width="900" height="636" loading="lazy"
+                   alt="Чертёж зубчатого колеса по ГОСТ с разрезом Б–Б, видом слева, резьбой, фасками и основной надписью.">
+            </button>
+            <figcaption><strong>ГОСТ.</strong> Зубчатое колесо: главный вид, разрез Б–Б, вид слева, резьба, фаски «2,4×60°», повторы «6 отв. ⌀19,8», масса в основной надписи.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <button class="zoomable" type="button" data-zoom="iso" aria-label="Открыть лист по ISO крупнее">
+              <img src="assets/img/iso-fork-600.webp"
+                   srcset="assets/img/iso-fork-600.webp 600w, assets/img/iso-fork-1000.webp 1000w"
+                   sizes="(max-width: 900px) 100vw, 30vw"
+                   width="600" height="849" loading="lazy"
+                   alt="Чертёж вилки с валом по ISO: разрез D–D, вид сбоку, вид сверху, допуски, шероховатость и примечания на английском.">
+            </button>
+            <figcaption><strong>ISO.</strong> Вилка с валом: разрез D–D, допуски и посадки, шероховатость, примечания на английском.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Стандарты -->
+      <section class="section" id="standards" aria-labelledby="standards-title">
+        <h2 id="standards-title">Три стандарта в одном переключателе</h2>
+        <p class="section-intro">Одна и та же модель — три разных листа. Сервис меняет не только рамку, но и расположение видов, единицы и запись размеров.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Сравнение стандартов">
+          <table class="standards-table">
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Параметр</span></th>
+                <th scope="col">ГОСТ</th>
+                <th scope="col">ISO</th>
+                <th scope="col">ASME</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Угол проецирования</th>
+                <td>Первый</td>
+                <td>Первый</td>
+                <td>Третий: вид слева стоит слева</td>
+              </tr>
+              <tr>
+                <th scope="row">Единицы</th>
+                <td>Миллиметры</td>
+                <td>Миллиметры</td>
+                <td>Миллиметры или дюймы</td>
+              </tr>
+              <tr>
+                <th scope="row">Основная надпись</th>
+                <td>ГОСТ 2.104, форма 1</td>
+                <td>ISO 7200</td>
+                <td>ASME Y14.1</td>
+              </tr>
+              <tr>
+                <th scope="row">Отверстия на листе</th>
+                <td class="drawing-text drawing-text-gost">4 отв. ⌀12</td>
+                <td class="drawing-text">4× Ø12</td>
+                <td class="drawing-text">4X Ø.472</td>
+              </tr>
+              <tr>
+                <th scope="row">Форматы</th>
+                <td>A4–A1</td>
+                <td>A4–A1</td>
+                <td>ANSI A–D</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Аудитория -->
+      <section class="section" id="audience" aria-labelledby="audience-title">
+        <h2 id="audience-title">Кому пригодится</h2>
+        <dl class="audience-list">
+          <div>
+            <dt>Студентам инженерных направлений</dt>
+            <dd>Черновик листа к курсовой по модели, которую вы уже сделали, — видно, как ставятся виды, разрезы и размеры.</dd>
+          </div>
+          <div>
+            <dt>Конструкторам и небольшим КБ</dt>
+            <dd>Лист за секунды вместо часа, когда заказчику или станочнику он нужен сегодня.</dd>
+          </div>
+          <div>
+            <dt>Мастерским и производствам</dt>
+            <dd>Чертёж по присланному STEP без своего CAD-пакета и без конструктора в штате.</dd>
+          </div>
+          <div>
+            <dt>Командам с зарубежными партнёрами</dt>
+            <dd>Тот же лист по ISO или ASME — сменой одного параметра.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Вопросы -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Вопросы</h2>
+        <div class="faq">
+          <details>
+            <summary>Какие файлы подходят?</summary>
+            <p>STEP (.step, .stp) и IGES (.iges, .igs) с одним твёрдым телом, до 30 МБ. Сборка или модель из одних поверхностей не подойдёт: сервис попросит загрузить одну деталь.</p>
+          </details>
+          <details>
+            <summary>Сколько ждать лист?</summary>
+            <p>Обычно несколько секунд: медиана 4,7 с, девять листов из десяти готовы быстрее 25 с. Очень сложную деталь сервис попробует построить в упрощённом режиме, а если не выйдет — объяснит почему.</p>
+          </details>
+          <details>
+            <summary>Какие детали получаются лучше всего?</summary>
+            <p>Тела вращения — валы, втулки, фланцы, шкивы; плиты и кронштейны с отверстиями; корпусные детали средней сложности.</p>
+          </details>
+          <details>
+            <summary>Чего сервис пока не умеет?</summary>
+            <p>Местные и ступенчатые разрезы, размеры на выносных элементах, таблицы параметров зубчатых колёс, знаки зенковки и цековки. На сложных деталях размеров бывает больше, чем поставил бы конструктор, поэтому лист стоит проверить.</p>
+          </details>
+          <details>
+            <summary>Заменит ли он CAD-систему?</summary>
+            <p>Нет. Сервис делает готовый черновик листа: его можно сразу распечатать или проверить и доработать в своей CAD-системе.</p>
+          </details>
+          <details>
+            <summary>Кто увидит мои модели?</summary>
+            <p>Только вы: модели и чертежи будут привязаны к вашему аккаунту. Файл на сервере только читается и обрабатывается в отдельном процессе.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Призыв -->
+      <section class="section cta" id="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">Посмотрите, как строится лист</h2>
+        <p>Демо работает прямо на этой странице, без регистрации. Полная версия с загрузкой своих моделей — в декабре 2026.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#demo">Попробовать демо</a>
+          <a class="button button-secondary" href="https://github.com/vsevolodkirichuk/sheetgen-web" rel="noopener">Следить за разработкой на GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Подвал в виде основной надписи -->
+    <footer class="title-block" aria-label="О проекте">
+      <div class="tb-cell tb-name">
+        <span class="tb-label">Наименование</span>
+        <span class="tb-value tb-value-large">Sheetgen Web</span>
+        <span class="tb-value">Чертежи деталей по 3D-моделям</span>
+      </div>
+      <div class="tb-cell tb-code">
+        <span class="tb-label">Обозначение</span>
+        <span class="tb-value">SGW.00.002</span>
+      </div>
+      <div class="tb-cell tb-author">
+        <span class="tb-label">Разработал</span>
+        <span class="tb-value">Всеволод Киричук</span>
+      </div>
+      <div class="tb-cell tb-small tb-lit">
+        <span class="tb-label">Лит.</span>
+        <span class="tb-value" title="Литера «У» — учебный документ">У</span>
+      </div>
+      <div class="tb-cell tb-small tb-sheet">
+        <span class="tb-label">Лист</span>
+        <span class="tb-value">1</span>
+      </div>
+      <div class="tb-cell tb-small tb-sheets">
+        <span class="tb-label">Листов</span>
+        <span class="tb-value">1</span>
+      </div>
+      <div class="tb-cell tb-material">
+        <span class="tb-label">Материал</span>
+        <span class="tb-value">HTML, CSS, JavaScript</span>
+      </div>
+      <div class="tb-cell tb-org">
+        <span class="tb-label">Организация</span>
+        <span class="tb-value">МФТИ, курс веб-разработки, 2026</span>
+      </div>
+      <div class="tb-cell tb-links">
+        <a href="https://github.com/vsevolodkirichuk/sheetgen-web" rel="noopener">Исходный код на GitHub</a>
+        <span class="tb-credits">Шрифты: osifont (LGPL-3.0 с исключением для шрифтов), IBM Plex Sans (OFL-1.1)</span>
+      </div>
+    </footer>
+  </div>
+
+  <dialog class="zoom-dialog" id="zoom-dialog" aria-labelledby="zoom-caption">
+    <form method="dialog" class="zoom-close-form">
+      <button class="zoom-close" type="submit">Закрыть</button>
+    </form>
+    <figure>
+      <img id="zoom-image" src="" alt="">
+      <figcaption id="zoom-caption"></figcaption>
+    </figure>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">Демо-чертёж и меню работают на JavaScript. Остальная страница доступна и без него.</p>
+  </noscript>
+</body>
+</html>
